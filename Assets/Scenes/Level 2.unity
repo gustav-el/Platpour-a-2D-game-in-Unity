@@ -2044,7 +2044,7 @@ GameObject:
   - component: {fileID: 1039646935}
   - component: {fileID: 1039646937}
   m_Layer: 0
-  m_Name: vicotry point
+  m_Name: victory point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

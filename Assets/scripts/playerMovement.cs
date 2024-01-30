@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This script handles the player movements including jumping and switching gravity
+/// </summary>
+
 public class playerMovement : MonoBehaviour
 {
+
     private float horizontal;
     private float speed = 8;
     private float jumpingPower = 15;
@@ -34,7 +34,7 @@ public class playerMovement : MonoBehaviour
     {
         Physics2D.gravity = new Vector2(0, -9.8f);
         doubleJumpTimer = 3;
-        
+
     }
 
     // Update is called once per frame
@@ -47,6 +47,7 @@ public class playerMovement : MonoBehaviour
             if (!isJumping)
             {
                 Jump();
+                isJumping = true;
             }
             else if (canDoubleJump && !doubleJump)
             {
@@ -76,7 +77,7 @@ public class playerMovement : MonoBehaviour
         if (doubleJumpTimer > 0f)
         {
             doubleJumpCooldown -= Time.deltaTime;
-            //UpdateUI();
+
         }
         else
         {
@@ -99,7 +100,7 @@ public class playerMovement : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
-
+    // fliping player direction
     private void Flip()
     {
         if (isFacingRight && horizontal > 0f)
@@ -120,10 +121,10 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-
+    //checking for collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             isJumping = false;
@@ -138,6 +139,7 @@ public class playerMovement : MonoBehaviour
             Debug.Log("inte groundad");
         }
     }
+    // checking if no longer collition
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
@@ -146,7 +148,8 @@ public class playerMovement : MonoBehaviour
         }
     }
     private void ResetDoubleJumpCooldown()
-    { canDoubleJump = true;
+    {
+        canDoubleJump = true;
         doubleJumpCooldown = 3f;
         doubleJumpTimer = doubleJumpCooldown;
     }
@@ -154,7 +157,7 @@ public class playerMovement : MonoBehaviour
     {
         if (!isJumping)
         {
-            isJumping = true;
+            //isJumping = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             Debug.Log("hoppar");
 
@@ -199,14 +202,14 @@ public class playerMovement : MonoBehaviour
 
     }
 
-
-     private void LateUpdate() //switching the double jump cooldown visual every frame
+    //switching the double jump cooldown visual every frame
+    private void LateUpdate()
     {
-        switch (doubleJumpCooldown>0)
+        switch (doubleJumpCooldown > 0)
         {
             case true:
-                visualCooldown.text = Mathf.Ceil(doubleJumpCooldown).ToString();        
-                
+                visualCooldown.text = Mathf.Ceil(doubleJumpCooldown).ToString();
+
                 break;
             case false:
                 visualCooldown.text = "ready";
@@ -222,6 +225,6 @@ public class playerMovement : MonoBehaviour
             Debug.Log("inte normal gravitation");
         }
 
-    }   
+    }
 
 }
