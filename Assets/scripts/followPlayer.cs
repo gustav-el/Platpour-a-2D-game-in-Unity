@@ -6,6 +6,7 @@ public class followPlayer: MonoBehaviour
 {
 
     public Transform followTransform;
+    public GameObject cameraGameobject;
     
 
     // Update is called once per frame
@@ -15,4 +16,9 @@ public class followPlayer: MonoBehaviour
         
         
     }
+
+    //private void Awake()
+    //{
+    //    DontDestroyOnLoad(cameraGameobject);
+    //}
 }

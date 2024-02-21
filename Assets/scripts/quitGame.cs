@@ -11,7 +11,7 @@ public class quitGame : MonoBehaviour
     public void exitGame()
     {
         Application.Quit();
-        EditorApplication.isPlaying = false;
+        //EditorApplication.isPlaying = false;
     }
 
 }

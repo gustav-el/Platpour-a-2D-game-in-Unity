@@ -34,9 +34,6 @@ public class DeathChecker : MonoBehaviour
 
 
             }
-
-
-
         }
     }
     bool playerDied()
@@ -63,7 +60,4 @@ public class DeathChecker : MonoBehaviour
             playerMovementScript.isGravityNormal = true;
 
         }
-            
-
-    
 }

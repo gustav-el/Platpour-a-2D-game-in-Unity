@@ -34,10 +34,8 @@ public class playerMovement : MonoBehaviour
     {
         Physics2D.gravity = new Vector2(0, -9.8f);
         doubleJumpTimer = 3;
-
     }
-
-    // Update is called once per frame
+  
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
